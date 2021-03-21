@@ -1,4 +1,4 @@
-package com.brunoIgarzabal.invcontrol.domain.contact;
+package com.brunoIgarzabal.invcontrol.domain.contacts;
 
 import com.brunoIgarzabal.invcontrol.domain.Base;
 

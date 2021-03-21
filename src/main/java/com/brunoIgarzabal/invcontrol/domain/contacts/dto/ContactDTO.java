@@ -1,6 +1,6 @@
-package com.brunoIgarzabal.invcontrol.domain.contact.dto;
+package com.brunoIgarzabal.invcontrol.domain.contacts.dto;
 
-import com.brunoIgarzabal.invcontrol.domain.contact.Contact;
+import com.brunoIgarzabal.invcontrol.domain.contacts.Contact;
 
 import java.io.Serializable;
 

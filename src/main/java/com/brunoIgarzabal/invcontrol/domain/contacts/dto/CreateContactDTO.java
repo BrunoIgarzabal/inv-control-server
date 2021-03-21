@@ -1,4 +1,4 @@
-package com.brunoIgarzabal.invcontrol.domain.contact.dto;
+package com.brunoIgarzabal.invcontrol.domain.contacts.dto;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
