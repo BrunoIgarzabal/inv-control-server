@@ -15,14 +15,38 @@ public final class CreateProviderDTO implements Serializable {
     private String cnpj;
 
     @NotEmpty(message = "Razão Social é obrigatório")
-    private String razaoSocial;
+    private String companyName;
 
     @NotEmpty(message = "Nome Fantasia é obrigatório")
-    private String nomeFantasia;
+    private String fantasyName;
 
     @NotNull(message = "Dados de Contato são obrigatórios")
     private CreateContactDTO contact;
 
     @NotNull(message = "Dados de Endereço são obrigatórios")
     private CreateAddressDTO address;
+
+    public String getIe() {
+        return ie;
+    }
+
+    public String getCnpj() {
+        return cnpj;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public String getFantasyName() {
+        return fantasyName;
+    }
+
+    public CreateContactDTO getContact() {
+        return contact;
+    }
+
+    public CreateAddressDTO getAddress() {
+        return address;
+    }
 }

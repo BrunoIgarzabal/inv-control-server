@@ -17,9 +17,9 @@ public final class Provider extends Base<Provider> implements Serializable {
 
     private String ie;
     private String cnpj;
-    private String razaoSocial;
+    private String companyName;
 
-    private String nomeFantasia;
+    private String fantasyName;
 
     @ManyToOne
     @JoinColumn(name = "contact_id")
@@ -31,12 +31,12 @@ public final class Provider extends Base<Provider> implements Serializable {
 
     public Provider() {}
 
-    public Provider(Long id,String ie, String cnpj, String razaoSocial, String nomeFantasia, Contact contact, Address address) {
+    public Provider(Long id,String ie, String cnpj, String companyName, String fantasyName, Contact contact, Address address) {
         this.id = id;
         this.ie = ie;
         this.cnpj = cnpj;
-        this.razaoSocial = razaoSocial;
-        this.nomeFantasia = nomeFantasia;
+        this.companyName = companyName;
+        this.fantasyName = fantasyName;
         this.contact = contact;
         this.address = address;
     }
@@ -49,12 +49,12 @@ public final class Provider extends Base<Provider> implements Serializable {
         return cnpj;
     }
 
-    public String getRazaoSocial() {
-        return razaoSocial;
+    public String getCompanyName() {
+        return companyName;
     }
 
-    public String getNomeFantasia() {
-        return nomeFantasia;
+    public String getFantasyName() {
+        return fantasyName;
     }
 
     public Contact getContact() {

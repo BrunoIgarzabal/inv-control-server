@@ -13,9 +13,9 @@ public final class ProviderDTO implements Serializable {
 
     private String ie;
     private String cnpj;
-    private String razaoSocial;
 
-    private String nomeFantasia;
+    private String companyName;
+    private String fantasyName;
 
     private Contact contact;
 
@@ -27,8 +27,8 @@ public final class ProviderDTO implements Serializable {
         this.id = provider.getId();
         this.ie = provider.getIe();
         this.cnpj = provider.getCnpj();
-        this.razaoSocial = provider.getRazaoSocial();
-        this.nomeFantasia = provider.getNomeFantasia();
+        this.companyName = provider.getCompanyName();
+        this.fantasyName = provider.getFantasyName();
         this.contact = provider.getContact();
         this.address = provider.getAddress();
     }

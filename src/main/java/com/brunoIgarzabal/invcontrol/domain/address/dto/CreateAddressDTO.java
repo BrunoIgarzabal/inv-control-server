@@ -1,5 +1,7 @@
 package com.brunoIgarzabal.invcontrol.domain.address.dto;
 
+import com.brunoIgarzabal.invcontrol.domain.address.Address;
+
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
@@ -23,4 +25,35 @@ public final class CreateAddressDTO implements Serializable {
     @NotEmpty(message = "UF é obrigatório")
     private String state;
 
+    public Address toAddress() {
+        return new Address(null, this.number, this.cep, this.street, this.district, this.complement, this.city, this.state);
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public String getCep() {
+        return cep;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public String getDistrict() {
+        return district;
+    }
+
+    public String getComplement() {
+        return complement;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public String getState() {
+        return state;
+    }
 }

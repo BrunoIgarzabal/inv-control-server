@@ -4,5 +4,5 @@ import com.brunoIgarzabal.invcontrol.domain.address.Address;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface AddressRepository extends GenericRepository<Address> {
+public interface AddressRepository extends BaseRepository<Address> {
 }

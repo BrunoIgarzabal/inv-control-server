@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 @Primary
-public interface ProviderRepository extends GenericRepository<Provider>{
+public interface ProviderRepository extends BaseRepository<Provider>{
 }

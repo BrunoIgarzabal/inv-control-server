@@ -22,7 +22,8 @@ public final class Address extends Base<Address> implements Serializable {
 
     public Address() {}
 
-    public Address(String number, String cep, String street, String district, String complement, String city, String state) {
+    public Address(Long id, String number, String cep, String street, String district, String complement, String city, String state) {
+        this.id = id;
         this.number = number;
         this.cep = cep;
         this.street = street;
