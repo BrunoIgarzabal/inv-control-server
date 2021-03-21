@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "tb_contact")
-public class Contact extends Base<Contact> implements Serializable {
+public final class Contact extends Base<Contact> implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private String phone;
