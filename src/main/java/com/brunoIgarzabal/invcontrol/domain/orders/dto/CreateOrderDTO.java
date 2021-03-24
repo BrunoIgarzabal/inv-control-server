@@ -1,0 +1,30 @@
+package com.brunoIgarzabal.invcontrol.domain.orders.dto;
+
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+import java.io.Serializable;
+
+public final class CreateOrderDTO implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+    @NotEmpty(message = "Descrição do serviço é obrigatório")
+    @Size(min = 1, max = 1000)
+    private String description;
+
+    @NotEmpty(message = "Preço do serviço é obrigatório")
+    private String price;
+
+    private Boolean finished;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public Boolean getFinished() {
+        return finished;
+    }
+}
