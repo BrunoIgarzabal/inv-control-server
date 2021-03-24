@@ -32,4 +32,32 @@ public final class ProviderDTO implements Serializable {
         this.contact = provider.getContact();
         this.address = provider.getAddress();
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getIe() {
+        return ie;
+    }
+
+    public String getCnpj() {
+        return cnpj;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public String getFantasyName() {
+        return fantasyName;
+    }
+
+    public Contact getContact() {
+        return contact;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
 }

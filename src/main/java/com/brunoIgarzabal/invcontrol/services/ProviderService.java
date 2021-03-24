@@ -19,9 +19,32 @@ public class ProviderService extends BaseService<Provider> {
     @Transactional
     public Provider insert(Provider entity) {
         super.insert(entity);
-        contactRepository.save(entity.getContact());
-        addressRepository.save(entity.getAddress());
+
+        this.saveEntities(entity);
 
         return entity;
+    }
+
+    @Override
+    public Provider update(Provider entity, Long id) {
+        this.saveEntities(entity);
+
+        return super.update(entity, id);
+
+    }
+
+    @Override
+    protected void updateData(Provider newObj, Provider oldObj) {
+        newObj.setId(oldObj.getId());
+        newObj.setFantasyName(oldObj.getFantasyName());
+        newObj.setIe(oldObj.getIe());
+        newObj.setContact(oldObj.getContact());
+        newObj.setCnpj(oldObj.getCnpj());
+        newObj.setAddress(oldObj.getAddress());
+    }
+
+    private void saveEntities(Provider provider) {
+        contactRepository.save(provider.getContact());
+        addressRepository.save(provider.getAddress());
     }
 }

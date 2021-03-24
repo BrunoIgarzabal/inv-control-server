@@ -4,10 +4,7 @@ import com.brunoIgarzabal.invcontrol.domain.Base;
 import com.brunoIgarzabal.invcontrol.domain.address.Address;
 import com.brunoIgarzabal.invcontrol.domain.contacts.Contact;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
@@ -21,11 +18,11 @@ public final class Provider extends Base<Provider> implements Serializable {
 
     private String fantasyName;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "contact_id")
     private Contact contact;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "address_id")
     private Address address;
 
@@ -63,5 +60,29 @@ public final class Provider extends Base<Provider> implements Serializable {
 
     public Address getAddress() {
         return address;
+    }
+
+    public void setIe(String ie) {
+        this.ie = ie;
+    }
+
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public void setFantasyName(String fantasyName) {
+        this.fantasyName = fantasyName;
+    }
+
+    public void setContact(Contact contact) {
+        this.contact = contact;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 }
