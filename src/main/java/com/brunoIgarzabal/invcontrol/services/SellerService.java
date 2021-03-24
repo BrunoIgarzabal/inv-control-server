@@ -1,6 +1,6 @@
 package com.brunoIgarzabal.invcontrol.services;
 
-import com.brunoIgarzabal.invcontrol.domain.providers.Provider;
+import com.brunoIgarzabal.invcontrol.domain.sellers.Seller;
 import com.brunoIgarzabal.invcontrol.repositories.AddressRepository;
 import com.brunoIgarzabal.invcontrol.repositories.ContactRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class ProviderService extends BaseService<Provider> {
+public class SellerService extends BaseService<Seller> {
 
     @Autowired
     private ContactRepository contactRepository;
@@ -17,7 +17,7 @@ public class ProviderService extends BaseService<Provider> {
 
     @Override
     @Transactional
-    public Provider insert(Provider entity) {
+    public Seller insert(Seller entity) {
         super.insert(entity);
 
         this.saveEntities(entity);
@@ -26,7 +26,7 @@ public class ProviderService extends BaseService<Provider> {
     }
 
     @Override
-    public Provider update(Provider entity, Long id) {
+    public Seller update(Seller entity, Long id) {
         this.saveEntities(entity);
 
         return super.update(entity, id);
@@ -34,18 +34,16 @@ public class ProviderService extends BaseService<Provider> {
     }
 
     @Override
-    protected void updateData(Provider newObj, Provider oldObj) {
+    protected void updateData(Seller newObj, Seller oldObj) {
         newObj.setId(oldObj.getId());
-        newObj.setFantasyName(oldObj.getFantasyName());
-        newObj.setCompanyName(oldObj.getCompanyName());
-        newObj.setIe(oldObj.getIe());
+        newObj.setFullName(oldObj.getFullName());
+        newObj.setCpf(oldObj.getCpf());
         newObj.setContact(oldObj.getContact());
-        newObj.setCnpj(oldObj.getCnpj());
         newObj.setAddress(oldObj.getAddress());
     }
 
-    private void saveEntities(Provider provider) {
-        contactRepository.save(provider.getContact());
-        addressRepository.save(provider.getAddress());
+    private void saveEntities(Seller seller) {
+        contactRepository.save(seller.getContact());
+        addressRepository.save(seller.getAddress());
     }
 }

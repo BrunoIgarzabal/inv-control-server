@@ -8,7 +8,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "tb_fornecedores")
+@Table(name = "tb_providers")
 public final class Provider extends Base<Provider> implements Serializable {
     private static final long serialVersionUID = 1L;
 

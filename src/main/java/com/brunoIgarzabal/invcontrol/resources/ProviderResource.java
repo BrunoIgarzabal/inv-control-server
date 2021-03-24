@@ -17,20 +17,20 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping(value = "/providers")
+@RequestMapping(value = "api/providers")
 @Tag(name = "Providers")
 public class ProviderResource {
 
     @Autowired
     private ProviderService service;
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @GetMapping(value = "/{id}")
     public ResponseEntity<Provider> find(@PathVariable Long id) {
         Provider provider = service.find(id);
         return ResponseEntity.ok().body(provider);
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @PostMapping
     public ResponseEntity<Void> insert(@Valid @RequestBody CreateProviderDTO providerDTO) {
         Provider provider = new Provider(
             null, providerDTO.getIe(),
@@ -74,7 +74,7 @@ public class ProviderResource {
         return ResponseEntity.noContent().build();
     }
 
-    @RequestMapping(method = RequestMethod.GET)
+    @GetMapping
     public ResponseEntity<List<ProviderDTO>> findAll() {
         List<Provider> list = service.findAll();
 
