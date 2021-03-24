@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class BaseService<T> {
+public abstract class BaseService<T> {
 
     @Autowired
     protected BaseRepository<T> repository;

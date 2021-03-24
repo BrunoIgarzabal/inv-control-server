@@ -19,16 +19,10 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping(value = "api/providers")
 @Tag(name = "Providers")
-public class ProviderResource {
+public class ProviderResource extends BaseResource<Provider> {
 
     @Autowired
     private ProviderService service;
-
-    @GetMapping(value = "/{id}")
-    public ResponseEntity<Provider> find(@PathVariable Long id) {
-        Provider provider = service.find(id);
-        return ResponseEntity.ok().body(provider);
-    }
 
     @PostMapping
     public ResponseEntity<Void> insert(@Valid @RequestBody CreateProviderDTO providerDTO) {
@@ -65,12 +59,6 @@ public class ProviderResource {
 
         provider.setId(id);
         provider = service.update(provider, id);
-        return ResponseEntity.noContent().build();
-    }
-
-    @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
-        service.delete(id);
         return ResponseEntity.noContent().build();
     }
 

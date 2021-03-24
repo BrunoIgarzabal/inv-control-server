@@ -18,16 +18,10 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping(value = "api/sellers")
 @Tag(name = "Sellers")
-public class SellerResource {
+public class SellerResource extends BaseResource<Seller> {
 
     @Autowired
     private SellerService service;
-
-    @GetMapping(value = "/{id}")
-    public ResponseEntity<Seller> find(@PathVariable Long id) {
-        Seller seller = service.find(id);
-        return ResponseEntity.ok().body(seller);
-    }
 
     @PostMapping
     public ResponseEntity<Void> insert(@Valid @RequestBody CreateSellerDTO sellerDTO) {
@@ -60,12 +54,6 @@ public class SellerResource {
 
         seller.setId(id);
         seller = service.update(seller, id);
-        return ResponseEntity.noContent().build();
-    }
-
-    @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
-        service.delete(id);
         return ResponseEntity.noContent().build();
     }
 

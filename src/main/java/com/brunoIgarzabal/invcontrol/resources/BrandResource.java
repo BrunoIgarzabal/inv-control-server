@@ -20,16 +20,10 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping(value = "api/brands")
 @Tag(name = "Brands")
-public class BrandResource {
+public class BrandResource extends BaseResource<Brand> {
 
     @Autowired
     private BrandService service;
-
-    @GetMapping(value = "/{id}")
-    public ResponseEntity<Brand> find(@PathVariable Long id) {
-        Brand brand = service.find(id);
-        return ResponseEntity.ok().body(brand);
-    }
 
     @PostMapping
     public ResponseEntity<Void> insert(@Valid @RequestBody CreateBrandDTO brandDTO) {
@@ -52,12 +46,6 @@ public class BrandResource {
         brand.setId(id);
 
         brand = service.update(brand, id);
-        return ResponseEntity.noContent().build();
-    }
-
-    @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
-        service.delete(id);
         return ResponseEntity.noContent().build();
     }
 
