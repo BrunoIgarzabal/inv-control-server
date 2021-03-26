@@ -25,13 +25,11 @@ public class UserInsertValidator implements ConstraintValidator<UserInsert, Crea
     public boolean isValid(CreateUserDTO userDTO, ConstraintValidatorContext context) {
         List<FieldMessage> list = new ArrayList<>();
 
-        User auxEmail = userRepository.findByEmail(userDTO.getEmail());
-        if (auxEmail != null) {
+        if (userRepository.findByEmail(userDTO.getEmail()) != null) {
             list.add(new FieldMessage("email", "E-mail pertence a outro usuário"));
         }
 
-        User auxUserName = userRepository.findByUserName(userDTO.getUserName());
-        if (auxEmail != null) {
+        if (userRepository.findByUserName(userDTO.getUserName()) != null) {
             list.add(new FieldMessage("userName", "Nome de usuário pertence a outro usuário"));
         }
 
