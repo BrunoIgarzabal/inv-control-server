@@ -1,6 +1,5 @@
-package com.brunoIgarzabal.invcontrol.services.validations;
+package com.brunoIgarzabal.invcontrol.services.validations.user;
 
-import com.brunoIgarzabal.invcontrol.domain.users.User;
 import com.brunoIgarzabal.invcontrol.domain.users.dto.CreateUserDTO;
 import com.brunoIgarzabal.invcontrol.repositories.UserRepository;
 import com.brunoIgarzabal.invcontrol.resources.exceptions.FieldMessage;

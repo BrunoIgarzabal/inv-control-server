@@ -3,7 +3,7 @@ package com.brunoIgarzabal.invcontrol.domain.clients.dto;
 import com.brunoIgarzabal.invcontrol.domain.address.dto.CreateAddressDTO;
 import com.brunoIgarzabal.invcontrol.domain.clients.enums.ClientType;
 import com.brunoIgarzabal.invcontrol.domain.contacts.dto.CreateContactDTO;
-import com.brunoIgarzabal.invcontrol.services.validations.ClientInsert;
+import com.brunoIgarzabal.invcontrol.services.validations.client.ClientInsert;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;

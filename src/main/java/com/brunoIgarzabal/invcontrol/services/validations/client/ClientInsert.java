@@ -1,4 +1,4 @@
-package com.brunoIgarzabal.invcontrol.services.validations;
+package com.brunoIgarzabal.invcontrol.services.validations.client;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;

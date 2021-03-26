@@ -1,4 +1,4 @@
-package com.brunoIgarzabal.invcontrol.services.validations;
+package com.brunoIgarzabal.invcontrol.services.validations.client;
 
 import com.brunoIgarzabal.invcontrol.domain.clients.dto.CreateClientDTO;
 import com.brunoIgarzabal.invcontrol.domain.clients.enums.ClientType;

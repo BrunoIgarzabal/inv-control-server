@@ -1,24 +1,20 @@
 package com.brunoIgarzabal.invcontrol.domain.users.dto;
 
 import com.brunoIgarzabal.invcontrol.domain.users.enums.UserType;
-import com.brunoIgarzabal.invcontrol.services.validations.user.UserInsert;
+import com.brunoIgarzabal.invcontrol.services.validations.user.UserUpdate;
 
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
-@UserInsert
-public final class CreateUserDTO implements Serializable {
+@UserUpdate
+public final class UpdateUserDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    @NotEmpty(message = "Nome é obrigatório")
     private String fullName;
 
-    @NotEmpty(message = "E-mail é obrigatório")
     @Email(message = "E-mail inválido")
     private String email;
 
-    @NotEmpty(message = "Nome de usuário é obrigatório")
     private String userName;
 
     private UserType userType;
