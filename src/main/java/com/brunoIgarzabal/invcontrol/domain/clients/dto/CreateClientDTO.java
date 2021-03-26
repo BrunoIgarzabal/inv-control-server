@@ -3,17 +3,20 @@ package com.brunoIgarzabal.invcontrol.domain.clients.dto;
 import com.brunoIgarzabal.invcontrol.domain.address.dto.CreateAddressDTO;
 import com.brunoIgarzabal.invcontrol.domain.clients.enums.ClientType;
 import com.brunoIgarzabal.invcontrol.domain.contacts.dto.CreateContactDTO;
+import com.brunoIgarzabal.invcontrol.services.validations.ClientInsert;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
+@ClientInsert
 public final class CreateClientDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @NotEmpty(message = "Nome é obrigatório")
     private String fullName;
 
+    @NotEmpty(message = "CPF ou CNPJ é obrigatório")
     private String cpfCnpj;
 
     private ClientType clientType;
