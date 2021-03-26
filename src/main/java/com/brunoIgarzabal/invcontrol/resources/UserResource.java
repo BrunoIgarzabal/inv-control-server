@@ -7,6 +7,7 @@ import com.brunoIgarzabal.invcontrol.services.UserService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -19,12 +20,16 @@ import java.net.URI;
 public class UserResource extends BaseResource<User> {
 
     @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
+
+    @Autowired
     private UserService service;
 
     @PostMapping
     public ResponseEntity<Void> insert(@Valid @RequestBody CreateUserDTO userDTO) {
         User user = new User(
-            null, userDTO.getEmail(), userDTO.getUserName(), userDTO.getFullName(), userDTO.getUserType()
+            null, userDTO.getEmail(), userDTO.getUserName(), userDTO.getFullName(), userDTO.getUserType(),
+                passwordEncoder.encode(userDTO.getPassword())
         );
 
         user = service.insert(user);
@@ -41,7 +46,8 @@ public class UserResource extends BaseResource<User> {
     @PutMapping(value = "/{id}")
     public ResponseEntity<Void> update(@Valid @RequestBody UpdateUserDTO userDTO, @PathVariable Long id) {
         User user = new User(
-                null, userDTO.getEmail(), userDTO.getUserName(), userDTO.getFullName(), userDTO.getUserType()
+                null, userDTO.getEmail(), userDTO.getUserName(), userDTO.getFullName(), userDTO.getUserType(),
+                passwordEncoder.encode(userDTO.getPassword())
         );
 
         user.setId(id);

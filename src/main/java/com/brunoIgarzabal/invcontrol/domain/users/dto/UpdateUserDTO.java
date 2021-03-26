@@ -4,6 +4,7 @@ import com.brunoIgarzabal.invcontrol.domain.users.enums.UserType;
 import com.brunoIgarzabal.invcontrol.services.validations.user.UserUpdate;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
 @UserUpdate
@@ -19,6 +20,9 @@ public final class UpdateUserDTO implements Serializable {
 
     private UserType userType;
 
+    @NotEmpty(message = "Senha é obrigatória")
+    private String password;
+
     public String getFullName() {
         return fullName;
     }
@@ -33,5 +37,9 @@ public final class UpdateUserDTO implements Serializable {
 
     public UserType getUserType() {
         return userType;
+    }
+
+    public String getPassword() {
+        return password;
     }
 }

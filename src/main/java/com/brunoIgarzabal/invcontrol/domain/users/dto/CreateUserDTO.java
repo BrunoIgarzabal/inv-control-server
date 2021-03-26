@@ -23,6 +23,9 @@ public final class CreateUserDTO implements Serializable {
 
     private UserType userType;
 
+    @NotEmpty(message = "Senha é obrigatória")
+    private String password;
+
     public String getFullName() {
         return fullName;
     }
@@ -37,5 +40,9 @@ public final class CreateUserDTO implements Serializable {
 
     public UserType getUserType() {
         return userType;
+    }
+
+    public String getPassword() {
+        return password;
     }
 }

@@ -23,14 +23,17 @@ public final class User extends Base<User> implements Serializable {
 
     private Integer userType;
 
+    private String password;
+
     public User() {}
 
-    public User(Long id, String email, String userName, String name, UserType userType) {
+    public User(Long id, String email, String userName, String name, UserType userType, String password) {
         this.id = id;
         this.email = email;
         this.userName = userName;
         this.name = name;
         this.userType = userType.getCod();
+        this.password = password;
     }
 
     public String getName() {
@@ -63,5 +66,13 @@ public final class User extends Base<User> implements Serializable {
 
     public void setUserType(UserType userType) {
         this.userType = userType.getCod();
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
