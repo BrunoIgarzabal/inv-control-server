@@ -1,11 +1,10 @@
 package com.brunoIgarzabal.invcontrol.resources;
 
-import com.brunoIgarzabal.invcontrol.domain.contacts.Contact;
 import com.brunoIgarzabal.invcontrol.domain.providers.Provider;
 import com.brunoIgarzabal.invcontrol.domain.providers.dto.CreateProviderDTO;
 import com.brunoIgarzabal.invcontrol.domain.providers.dto.ProviderDTO;
 import com.brunoIgarzabal.invcontrol.services.ProviderService;
-import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +17,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "api/providers")
-@Tag(name = "Providers")
+@Api( tags = "Providers")
 public class ProviderResource extends BaseResource<Provider> {
 
     @Autowired

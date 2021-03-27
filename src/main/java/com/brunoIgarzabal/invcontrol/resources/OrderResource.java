@@ -4,7 +4,7 @@ import com.brunoIgarzabal.invcontrol.domain.orders.Order;
 import com.brunoIgarzabal.invcontrol.domain.orders.dto.CreateOrderDTO;
 import com.brunoIgarzabal.invcontrol.domain.orders.dto.OrderDTO;
 import com.brunoIgarzabal.invcontrol.services.OrderService;
-import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "api/orders")
-@Tag(name = "Orders")
+@Api( tags = "Orders")
 public class OrderResource extends BaseResource<Order> {
 
     @Autowired

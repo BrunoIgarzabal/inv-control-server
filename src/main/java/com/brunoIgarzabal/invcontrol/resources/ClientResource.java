@@ -3,9 +3,8 @@ package com.brunoIgarzabal.invcontrol.resources;
 import com.brunoIgarzabal.invcontrol.domain.clients.Client;
 import com.brunoIgarzabal.invcontrol.domain.clients.dto.ClientDTO;
 import com.brunoIgarzabal.invcontrol.domain.clients.dto.CreateClientDTO;
-import com.brunoIgarzabal.invcontrol.domain.sellers.Seller;
-import com.brunoIgarzabal.invcontrol.domain.sellers.dto.SellerDTO;
 import com.brunoIgarzabal.invcontrol.services.ClientService;
+import io.swagger.annotations.Api;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +18,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "api/clients")
-@Tag(name = "Clients")
+@Api( tags = "Clients")
 public class ClientResource extends BaseResource<Client> {
 
     @Autowired

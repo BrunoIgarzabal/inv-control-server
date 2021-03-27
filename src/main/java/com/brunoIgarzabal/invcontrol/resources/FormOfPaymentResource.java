@@ -4,7 +4,7 @@ import com.brunoIgarzabal.invcontrol.domain.formsOfPayment.FormOfPayment;
 import com.brunoIgarzabal.invcontrol.domain.formsOfPayment.dto.CreateFormOfPaymentDTO;
 import com.brunoIgarzabal.invcontrol.domain.formsOfPayment.dto.FormOfPaymentDTO;
 import com.brunoIgarzabal.invcontrol.services.FormOfPaymentService;
-import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "api/formsOfPayments")
-@Tag(name = "Forms of payment")
+@Api( tags = "Forms of payment")
 public class FormOfPaymentResource extends BaseResource<FormOfPayment> {
 
     @Autowired

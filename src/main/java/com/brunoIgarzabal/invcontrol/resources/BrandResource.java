@@ -3,10 +3,8 @@ package com.brunoIgarzabal.invcontrol.resources;
 import com.brunoIgarzabal.invcontrol.domain.brands.Brand;
 import com.brunoIgarzabal.invcontrol.domain.brands.dto.BrandDTO;
 import com.brunoIgarzabal.invcontrol.domain.brands.dto.CreateBrandDTO;
-import com.brunoIgarzabal.invcontrol.domain.providers.Provider;
-import com.brunoIgarzabal.invcontrol.domain.providers.dto.ProviderDTO;
 import com.brunoIgarzabal.invcontrol.services.BrandService;
-import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +17,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "api/brands")
-@Tag(name = "Brands")
+@Api( tags = "Brands")
 public class BrandResource extends BaseResource<Brand> {
 
     @Autowired

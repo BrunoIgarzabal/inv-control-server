@@ -1,13 +1,10 @@
 package com.brunoIgarzabal.invcontrol.resources;
 
-import com.brunoIgarzabal.invcontrol.domain.brands.Brand;
-import com.brunoIgarzabal.invcontrol.domain.brands.dto.BrandDTO;
-import com.brunoIgarzabal.invcontrol.domain.brands.dto.CreateBrandDTO;
 import com.brunoIgarzabal.invcontrol.domain.categories.Category;
 import com.brunoIgarzabal.invcontrol.domain.categories.dto.CategoryDTO;
 import com.brunoIgarzabal.invcontrol.domain.categories.dto.CreateCategoryDTO;
 import com.brunoIgarzabal.invcontrol.services.CategoryService;
-import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +17,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "api/categories")
-@Tag(name = "Categories")
+@Api( tags = "Categories")
 public class CategoryResource extends BaseResource<Category> {
 
     @Autowired

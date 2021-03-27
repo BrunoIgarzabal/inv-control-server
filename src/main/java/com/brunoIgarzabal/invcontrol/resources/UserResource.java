@@ -4,7 +4,7 @@ import com.brunoIgarzabal.invcontrol.domain.users.User;
 import com.brunoIgarzabal.invcontrol.domain.users.dto.CreateUserDTO;
 import com.brunoIgarzabal.invcontrol.domain.users.dto.UpdateUserDTO;
 import com.brunoIgarzabal.invcontrol.services.UserService;
-import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -16,7 +16,7 @@ import java.net.URI;
 
 @RestController
 @RequestMapping(value = "api/users")
-@Tag(name = "Users")
+@Api( tags = "Users")
 public class UserResource extends BaseResource<User> {
 
     @Autowired
