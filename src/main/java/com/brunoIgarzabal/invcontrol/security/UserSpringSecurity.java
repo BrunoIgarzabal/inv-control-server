@@ -30,6 +30,11 @@ public class UserSpringSecurity implements UserDetails {
                 .map(x -> new SimpleGrantedAuthority(x.getDescription())).collect(Collectors.toList());
     }
 
+    public boolean hasRole(UserType userType) {
+        return getAuthorities()
+                .contains(new SimpleGrantedAuthority(userType.getDescription()));
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return authorities;

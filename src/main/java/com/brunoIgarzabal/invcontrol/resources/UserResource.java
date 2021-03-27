@@ -7,6 +7,8 @@ import com.brunoIgarzabal.invcontrol.services.UserService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -25,6 +27,7 @@ public class UserResource extends BaseResource<User> {
     @Autowired
     private UserService service;
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @PostMapping
     public ResponseEntity<Void> insert(@Valid @RequestBody CreateUserDTO userDTO) {
         User user = new User(
@@ -43,6 +46,7 @@ public class UserResource extends BaseResource<User> {
         return ResponseEntity.created(uri).build();
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @PutMapping(value = "/{id}")
     public ResponseEntity<Void> update(@Valid @RequestBody UpdateUserDTO userDTO, @PathVariable Long id) {
         User user = new User(
@@ -55,4 +59,9 @@ public class UserResource extends BaseResource<User> {
         return ResponseEntity.noContent().build();
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
+    @Override
+    public ResponseEntity<Void> delete(Long id) {
+        return super.delete(id);
+    }
 }
