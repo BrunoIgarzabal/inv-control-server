@@ -4,6 +4,9 @@ import com.brunoIgarzabal.invcontrol.domain.users.User;
 import com.brunoIgarzabal.invcontrol.domain.users.enums.UserType;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public final class UserDTO implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -14,7 +17,7 @@ public final class UserDTO implements Serializable {
     private String email;
     private String userName;
 
-    private UserType userType;
+    private Set<UserType> profiles = new HashSet<>();
 
     public UserDTO() {}
 
@@ -23,7 +26,7 @@ public final class UserDTO implements Serializable {
         this.name = user.getName();
         this.email = user.getEmail();
         this.userName = user.getUserName();
-        this.userType = user.getUserType();
+        this.setProfiles(user.getProfiles());
     }
 
     public Long getId() {
@@ -58,11 +61,7 @@ public final class UserDTO implements Serializable {
         this.userName = userName;
     }
 
-    public UserType getUserType() {
-        return userType;
-    }
-
-    public void setUserType(UserType userType) {
-        this.userType = userType;
+    public void setProfiles(Set<UserType> userTypes) {
+        profiles = userTypes;
     }
 }

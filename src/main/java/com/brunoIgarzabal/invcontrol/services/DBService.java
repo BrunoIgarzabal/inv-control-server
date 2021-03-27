@@ -14,6 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
+import java.util.HashSet;
 
 @Service
 public class DBService {
@@ -44,6 +45,8 @@ public class DBService {
 
         User user = new User(
                 null, "brunoigar@live.com", "brunoIgarzabal", "Bruno Igarzabal", UserType.ADMIN, passwordEncoder.encode("12345678"));
-        userRepository.saveAll(Arrays.asList(user));
+        User user1 = new User(
+                null, "brunoigar@gmail.com", "brunoOliveira", "Bruno Igarzabal", UserType.SELLER, passwordEncoder.encode("12345678"));
+        userRepository.saveAll(Arrays.asList(user, user1));
     }
 }

@@ -11,7 +11,7 @@ public class UserService extends BaseService<User> {
         newObj.setId(oldObj.getId());
         newObj.setName(oldObj.getName());
         newObj.setUserName(oldObj.getUserName());
-        newObj.setUserType(oldObj.getUserType());
+        newObj.setProfiles(oldObj.getProfiles());
         newObj.setEmail(oldObj.getEmail());
     }
 

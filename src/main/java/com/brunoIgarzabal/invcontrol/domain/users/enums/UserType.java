@@ -2,8 +2,8 @@ package com.brunoIgarzabal.invcontrol.domain.users.enums;
 
 
 public enum UserType {
-    ADMIN(1, "Administrador"),
-    SELLER(2, "Vendedor");
+    ADMIN(1, "ROLE_ADMIN"),
+    SELLER(2, "ROLE_SELLER");
 
     private int cod;
     private String description;

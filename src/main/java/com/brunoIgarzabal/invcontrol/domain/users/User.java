@@ -2,11 +2,13 @@ package com.brunoIgarzabal.invcontrol.domain.users;
 
 import com.brunoIgarzabal.invcontrol.domain.Base;
 import com.brunoIgarzabal.invcontrol.domain.users.enums.UserType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "tb_users")
@@ -21,8 +23,11 @@ public final class User extends Base<User> implements Serializable {
     @Column(unique = true)
     private String userName;
 
-    private Integer userType;
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "profiles")
+    private Set<Integer> profiles = new HashSet<>();
 
+    @JsonIgnore
     private String password;
 
     public User() {}
@@ -32,7 +37,7 @@ public final class User extends Base<User> implements Serializable {
         this.email = email;
         this.userName = userName;
         this.name = name;
-        this.userType = userType.getCod();
+        addProfile(userType);
         this.password = password;
     }
 
@@ -60,13 +65,6 @@ public final class User extends Base<User> implements Serializable {
         this.userName = userName;
     }
 
-    public UserType getUserType() {
-        return UserType.toEnum(userType);
-    }
-
-    public void setUserType(UserType userType) {
-        this.userType = userType.getCod();
-    }
 
     public String getPassword() {
         return password;
@@ -74,5 +72,19 @@ public final class User extends Base<User> implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Set<UserType> getProfiles() {
+        return profiles.stream()
+                .map(x -> UserType.toEnum(x)).collect(Collectors.toSet());
+    }
+
+    public void addProfile(UserType userType) {
+        profiles.add(userType.getCod());
+    }
+
+    public void setProfiles(Set<UserType> userTypes) {
+        profiles = userTypes.stream()
+                .map(x -> x.getCod()).collect(Collectors.toSet());
     }
 }
