@@ -5,37 +5,39 @@ import java.io.Serializable;
 public class StandardError implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    private Long timestamp;
     private Integer status;
+    private String error;
     private String message;
-    private Long timeStamp;
+    private String path;
 
-    public StandardError(Integer status, String message, Long timeStamp) {
+    public StandardError() {}
+
+    public StandardError(Long timestamp, Integer status, String error, String message, String path) {
+        this.timestamp = timestamp;
         this.status = status;
+        this.error = error;
         this.message = message;
-        this.timeStamp = timeStamp;
+        this.path = path;
+    }
+
+    public Long getTimestamp() {
+        return timestamp;
     }
 
     public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
-        this.status = status;
+    public String getError() {
+        return error;
     }
 
     public String getMessage() {
         return message;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public Long getTimeStamp() {
-        return timeStamp;
-    }
-
-    public void setTimeStamp(Long timeStamp) {
-        this.timeStamp = timeStamp;
+    public String getPath() {
+        return path;
     }
 }
