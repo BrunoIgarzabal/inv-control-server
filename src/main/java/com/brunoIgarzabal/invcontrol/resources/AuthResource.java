@@ -3,6 +3,7 @@ package com.brunoIgarzabal.invcontrol.resources;
 import com.brunoIgarzabal.invcontrol.security.JWTUtil;
 import com.brunoIgarzabal.invcontrol.security.UserSpringSecurity;
 import com.brunoIgarzabal.invcontrol.services.UserService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @RestController
 @RequestMapping(value = "/api/auth")
+@Api( tags = "Auth")
 public class AuthResource {
 
     @Autowired

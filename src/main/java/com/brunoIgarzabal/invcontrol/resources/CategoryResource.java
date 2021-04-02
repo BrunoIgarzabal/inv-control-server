@@ -6,6 +6,9 @@ import com.brunoIgarzabal.invcontrol.domain.categories.dto.CreateCategoryDTO;
 import com.brunoIgarzabal.invcontrol.services.CategoryService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -24,6 +27,7 @@ public class CategoryResource extends BaseResource<Category> {
     private CategoryService service;
 
     @PostMapping
+    @CacheEvict(value = "findPageCategory", allEntries = true)
     public ResponseEntity<Void> insert(@Valid @RequestBody CreateCategoryDTO categoryDTO) {
         Category category = new Category(null, categoryDTO.getName());
 
@@ -39,6 +43,7 @@ public class CategoryResource extends BaseResource<Category> {
     }
 
     @PutMapping(value = "/{id}")
+    @CacheEvict(value = "findPageCategory", allEntries = true)
     public ResponseEntity<Void> update(@Valid @RequestBody CategoryDTO categoryDTO, @PathVariable Long id) {
         Category category = new Category(categoryDTO.getId(), categoryDTO.getName());
         category.setId(id);
@@ -47,15 +52,24 @@ public class CategoryResource extends BaseResource<Category> {
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping
-    public ResponseEntity<List<CategoryDTO>> findAll() {
-        List<Category> list = service.findAll();
+    @GetMapping(value = "/page")
+    @Cacheable(value = "findPageCategory")
+    public ResponseEntity<Page<CategoryDTO>> findPage(
+            @RequestParam(value = "page", defaultValue = "0") Integer page,
+            @RequestParam(value = "linesPerPage", defaultValue = "24") Integer linesPerPage,
+            @RequestParam(value = "orderBy", defaultValue = "name") String orderBy,
+            @RequestParam(value = "direction", defaultValue = "ASC") String direction
+    ) {
+        Page<Category> list = service.findPage(page, linesPerPage, orderBy, direction);
 
-        List<CategoryDTO> listDto = list
-                .stream()
-                .map(obj -> new CategoryDTO(obj))
-                .collect(Collectors.toList());
+        Page<CategoryDTO> listDto = list.map(CategoryDTO::new);
 
         return ResponseEntity.ok().body(listDto);
+    }
+
+    @Override
+    @CacheEvict(value = "findPageCategory", allEntries = true)
+    public ResponseEntity<Void> delete(Long id) {
+        return super.delete(id);
     }
 }

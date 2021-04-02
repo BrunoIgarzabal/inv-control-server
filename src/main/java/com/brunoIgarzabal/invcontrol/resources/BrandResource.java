@@ -6,6 +6,9 @@ import com.brunoIgarzabal.invcontrol.domain.brands.dto.CreateBrandDTO;
 import com.brunoIgarzabal.invcontrol.services.BrandService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +28,7 @@ public class BrandResource extends BaseResource<Brand> {
     private BrandService service;
 
     @PostMapping
+    @CacheEvict(value = "findPageBrands", allEntries = true)
     public ResponseEntity<Void> insert(@Valid @RequestBody CreateBrandDTO brandDTO) {
         Brand brand = new Brand(null, brandDTO.getName());
 
@@ -40,6 +44,7 @@ public class BrandResource extends BaseResource<Brand> {
     }
 
     @PutMapping(value = "/{id}")
+    @CacheEvict(value = "findPageBrands", allEntries = true)
     public ResponseEntity<Void> update(@Valid @RequestBody BrandDTO brandDTO, @PathVariable Long id) {
         Brand brand = new Brand(brandDTO.getId(), brandDTO.getName());
         brand.setId(id);
@@ -48,15 +53,24 @@ public class BrandResource extends BaseResource<Brand> {
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping
-    public ResponseEntity<List<BrandDTO>> findAll() {
-        List<Brand> list = service.findAll();
+    @GetMapping(value = "/page")
+    @Cacheable(value = "findPageBrands")
+    public ResponseEntity<Page<BrandDTO>> findPage(
+            @RequestParam(value = "page", defaultValue = "0") Integer page,
+            @RequestParam(value = "linesPerPage", defaultValue = "24") Integer linesPerPage,
+            @RequestParam(value = "orderBy", defaultValue = "name") String orderBy,
+            @RequestParam(value = "direction", defaultValue = "ASC") String direction
+    ) {
+        Page<Brand> list = service.findPage(page, linesPerPage, orderBy, direction);
 
-        List<BrandDTO> listDto = list
-                .stream()
-                .map(obj -> new BrandDTO(obj))
-                .collect(Collectors.toList());
+        Page<BrandDTO> listDto = list.map(BrandDTO::new);
 
         return ResponseEntity.ok().body(listDto);
+    }
+
+    @Override
+    @CacheEvict(value = "findPageBrands", allEntries = true)
+    public ResponseEntity<Void> delete(Long id) {
+        return super.delete(id);
     }
 }

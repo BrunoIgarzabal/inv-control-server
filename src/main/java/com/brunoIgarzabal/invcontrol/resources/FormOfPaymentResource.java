@@ -6,6 +6,7 @@ import com.brunoIgarzabal.invcontrol.domain.formsOfPayment.dto.FormOfPaymentDTO;
 import com.brunoIgarzabal.invcontrol.services.FormOfPaymentService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -25,9 +26,8 @@ public class FormOfPaymentResource extends BaseResource<FormOfPayment> {
     @Autowired
     private FormOfPaymentService service;
 
-
-
     @PostMapping
+    @CacheEvict(value = "findPagePayments", allEntries = true)
     public ResponseEntity<Void> insert(@Valid @RequestBody CreateFormOfPaymentDTO formOfPaymentDTO) {
         FormOfPayment formOfPayment = new FormOfPayment(
                 null, formOfPaymentDTO.getName(), formOfPaymentDTO.getCanParcel());
@@ -44,6 +44,7 @@ public class FormOfPaymentResource extends BaseResource<FormOfPayment> {
     }
 
     @PutMapping(value = "/{id}")
+    @CacheEvict(value = "findPagePayments", allEntries = true)
     public ResponseEntity<Void> update(@Valid @RequestBody FormOfPaymentDTO formOfPaymentDTO, @PathVariable Long id) {
         FormOfPayment formOfPayment = new FormOfPayment(
                 formOfPaymentDTO.getId(), formOfPaymentDTO.getName(), formOfPaymentDTO.getCanParcel());
@@ -55,18 +56,22 @@ public class FormOfPaymentResource extends BaseResource<FormOfPayment> {
     }
 
     @GetMapping(value = "/page")
-    @Cacheable("findPagePayments")
+    @Cacheable(value = "findPagePayments")
     public ResponseEntity<Page<FormOfPaymentDTO>> findPage(
             @RequestParam(value = "page", defaultValue = "0") Integer page,
             @RequestParam(value = "linesPerPage", defaultValue = "24") Integer linesPerPage,
             @RequestParam(value = "orderBy", defaultValue = "name") String orderBy,
             @RequestParam(value = "direction", defaultValue = "ASC") String direction) {
-
-        System.out.println("Sem cache");
         Page<FormOfPayment> list = service.findPage(page, linesPerPage, orderBy, direction);
 
         Page<FormOfPaymentDTO> listDto = list.map(FormOfPaymentDTO::new);
 
         return ResponseEntity.ok().body(listDto);
+    }
+
+    @CacheEvict(value = "findPagePayments", allEntries = true)
+    @Override
+    public ResponseEntity<Void> delete(Long id) {
+        return super.delete(id);
     }
 }
