@@ -6,6 +6,8 @@ import com.brunoIgarzabal.invcontrol.domain.formsOfPayment.dto.FormOfPaymentDTO;
 import com.brunoIgarzabal.invcontrol.services.FormOfPaymentService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -22,6 +24,8 @@ public class FormOfPaymentResource extends BaseResource<FormOfPayment> {
 
     @Autowired
     private FormOfPaymentService service;
+
+
 
     @PostMapping
     public ResponseEntity<Void> insert(@Valid @RequestBody CreateFormOfPaymentDTO formOfPaymentDTO) {
@@ -50,14 +54,18 @@ public class FormOfPaymentResource extends BaseResource<FormOfPayment> {
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping
-    public ResponseEntity<List<FormOfPaymentDTO>> findAll() {
-        List<FormOfPayment> list = service.findAll();
+    @GetMapping(value = "/page")
+    @Cacheable("findPagePayments")
+    public ResponseEntity<Page<FormOfPaymentDTO>> findPage(
+            @RequestParam(value = "page", defaultValue = "0") Integer page,
+            @RequestParam(value = "linesPerPage", defaultValue = "24") Integer linesPerPage,
+            @RequestParam(value = "orderBy", defaultValue = "name") String orderBy,
+            @RequestParam(value = "direction", defaultValue = "ASC") String direction) {
 
-        List<FormOfPaymentDTO> listDto = list
-                .stream()
-                .map(obj -> new FormOfPaymentDTO(obj))
-                .collect(Collectors.toList());
+        System.out.println("Sem cache");
+        Page<FormOfPayment> list = service.findPage(page, linesPerPage, orderBy, direction);
+
+        Page<FormOfPaymentDTO> listDto = list.map(FormOfPaymentDTO::new);
 
         return ResponseEntity.ok().body(listDto);
     }
