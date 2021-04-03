@@ -3,6 +3,8 @@ Backend em Java com Spring Boot do sistema Inv Control (Sistema de Ordem de Serv
 
 ## Tecnologias
 * Spring (Boot, Security, Cache)
+* JUnit 5
+* Mockito
 * JWT
 * Hibernate
 * H2 DB
