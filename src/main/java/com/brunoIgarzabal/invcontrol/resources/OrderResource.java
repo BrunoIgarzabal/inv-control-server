@@ -26,7 +26,7 @@ public class OrderResource extends BaseResource<Order> {
     @PostMapping
     public ResponseEntity<Void> insert(@Valid @RequestBody CreateOrderDTO orderDTO) {
         Order order = new Order(
-                null, orderDTO.getDescription(), orderDTO.getPrice(), orderDTO.getFinished());
+                null, orderDTO.getDescription(), orderDTO.getPrice(), orderDTO.getActive());
 
 
         order = service.insert(order);
@@ -43,7 +43,7 @@ public class OrderResource extends BaseResource<Order> {
     @PutMapping(value = "/{id}")
     public ResponseEntity<Void> update(@Valid @RequestBody OrderDTO orderDTO, @PathVariable Long id) {
         Order order = new Order(
-                orderDTO.getId(), orderDTO.getDescription(), orderDTO.getPrice(), orderDTO.getFinished());
+                orderDTO.getId(), orderDTO.getDescription(), orderDTO.getPrice(), orderDTO.getActive());
         order.setId(id);
 
         order = service.update(order, id);

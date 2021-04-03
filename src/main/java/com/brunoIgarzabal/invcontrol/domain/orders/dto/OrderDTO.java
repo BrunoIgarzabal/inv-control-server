@@ -11,7 +11,7 @@ public final class OrderDTO implements Serializable {
     private String description;
     private String price;
 
-    private Boolean finished;
+    private Boolean active;
 
     public OrderDTO() {}
 
@@ -19,7 +19,7 @@ public final class OrderDTO implements Serializable {
         this.id = order.getId();
         this.description = order.getDescription();
         this.price = order.getPrice();
-        this.finished = order.getFinished();
+        this.active = order.getActive();
     }
 
     public Long getId() {
@@ -34,7 +34,7 @@ public final class OrderDTO implements Serializable {
         return price;
     }
 
-    public Boolean getFinished() {
-        return finished;
+    public Boolean getActive() {
+        return active;
     }
 }

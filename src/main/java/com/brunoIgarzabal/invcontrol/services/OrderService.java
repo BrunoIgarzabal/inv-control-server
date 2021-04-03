@@ -11,6 +11,6 @@ public class OrderService extends BaseService<Order> {
         newObj.setId(oldObj.getId());
         newObj.setDescription(oldObj.getDescription());
         newObj.setPrice(oldObj.getPrice());
-        newObj.setFinished(oldObj.getFinished());
+        newObj.setActive(oldObj.getActive());
     }
 }

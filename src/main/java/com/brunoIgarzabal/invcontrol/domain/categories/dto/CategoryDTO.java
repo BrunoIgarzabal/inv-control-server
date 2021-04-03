@@ -18,6 +18,10 @@ public final class CategoryDTO implements Serializable {
         this.name = category.getName();
     }
 
+    public Category toCategory() {
+        return new Category(this.id, this.name);
+    }
+
     public Long getId() {
         return id;
     }

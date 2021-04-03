@@ -17,7 +17,7 @@ public final class CreateOrderDTO implements Serializable {
     private String price;
 
     @NotNull(message = "Status do serviço é obrigatório")
-    private Boolean finished;
+    private Boolean active;
 
     public String getDescription() {
         return description;
@@ -27,7 +27,7 @@ public final class CreateOrderDTO implements Serializable {
         return price;
     }
 
-    public Boolean getFinished() {
-        return finished;
+    public Boolean getActive() {
+        return active;
     }
 }

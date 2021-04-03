@@ -18,6 +18,10 @@ public final class BrandDTO implements Serializable {
         this.name = brand.getName();
     }
 
+    public Brand toBrand() {
+        return new Brand(this.id, this.name);
+    }
+
     public Long getId() {
         return id;
     }

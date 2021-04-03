@@ -18,16 +18,16 @@ public final class Order extends Base<Order> implements Serializable {
     @Column(length = 15, nullable = false)
     private String price;
 
-    @Column(columnDefinition = "boolean default false")
-    private Boolean isFinished;
+    @Column(columnDefinition = "boolean default true")
+    private Boolean isActive;
 
     public Order() {}
 
-    public Order(Long id, String description, String price, Boolean isFinished) {
+    public Order(Long id, String description, String price, Boolean isActive) {
         this.id = id;
         this.description = description;
         this.price = price;
-        this.isFinished = isFinished;
+        this.isActive = isActive;
     }
 
     public String getDescription() {
@@ -46,11 +46,11 @@ public final class Order extends Base<Order> implements Serializable {
         this.price = price;
     }
 
-    public Boolean getFinished() {
-        return isFinished;
+    public Boolean getActive() {
+        return isActive;
     }
 
-    public void setFinished(Boolean finished) {
-        isFinished = finished;
+    public void setActive(Boolean isActive) {
+        isActive = isActive;
     }
 }

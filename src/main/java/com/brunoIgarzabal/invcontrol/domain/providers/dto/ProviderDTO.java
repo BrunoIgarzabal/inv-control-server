@@ -33,6 +33,13 @@ public final class ProviderDTO implements Serializable {
         this.address = provider.getAddress();
     }
 
+    public Provider toProvider() {
+        return new Provider(
+                this.id, this.ie, this.cnpj,
+                this.companyName, this.fantasyName,
+                this.contact, this.address);
+    }
+
     public Long getId() {
         return id;
     }

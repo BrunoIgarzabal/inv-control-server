@@ -38,6 +38,12 @@ public final class Provider extends Base<Provider> implements Serializable {
         this.address = address;
     }
 
+    public Provider(Long id, String companyName, String fantasyName) {
+        this.id = id;
+        this.companyName = companyName;
+        this.fantasyName = fantasyName;
+    }
+
     public String getIe() {
         return ie;
     }
