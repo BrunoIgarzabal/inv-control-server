@@ -3,14 +3,15 @@ package com.brunoIgarzabal.invcontrol.domain.products.dto;
 import com.brunoIgarzabal.invcontrol.domain.brands.dto.BrandDTO;
 import com.brunoIgarzabal.invcontrol.domain.categories.dto.CategoryDTO;
 import com.brunoIgarzabal.invcontrol.domain.products.ProductComplement;
-import com.brunoIgarzabal.invcontrol.domain.providers.dto.ProviderDTO;
 import com.brunoIgarzabal.invcontrol.domain.providers.dto.SimpleProviderDTO;
+import com.brunoIgarzabal.invcontrol.services.validations.product.ProductInsert;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 
-public final class CreateProductDTO implements Serializable {
+@ProductInsert
+public final class FormProductDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @NotEmpty(message = "Nome do produto é obrigatório")
